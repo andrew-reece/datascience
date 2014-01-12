@@ -1,0 +1,62 @@
+
+Background and Motivation
+
+• We're interested in continuing with the kind of predictive analytical work we did in HW3 with feature extraction and modeling.
+• Daniel and Andrew are working on a separate team project, sponsored in part by the MIT Center for Civic Media, where they have a large-scale text processing task to sort out, using data collected by Mediacloud.org.  The CS109 final project seemed like a good way to put some ideas into action and test out a few ways of doing large scale feature extraction.
+• Andrew has a longtime friend and collaborator (Chris Danforth at UVM) who works on sentiment analysis for twitter and other social media outlets.  Chris offered to share his database of sentiment ratings for the 10 or 20 thousand most popular words in the English language for our project.
+• Putting all that together has us brainstorming hypotheses about the kind of predictive power that may be hidden in low-level input (ie. text unit length/complexity), for assessing more abstract features of written communication, such as the mood of the author (and its potential impact on readership).
+
+Project Objectives
+• Our project is about making high-level predictions using low-level data.  In other words, we're interested in what can be said about people, especially their moods and means of affective expression, based on how big they write.
+• By "big" we mean both word length and overall post/article length.  Do we write bigger or smaller when we're feeling emotional?  If so, does that behavior look different depending on valence (ie. whether we're happy or sad)?  And how do readers respond to these implicit emotional cues?
+• Specific hypotheses (subject to revision):
+LENGTH vs SENTIMENT
+• Textual analysis will reveal a relationship between word and overall article length, and average article sentiment.
+• Articles with higher overall sentiment ratings will, on average, contain shorter words.  Emotional people don't tend to be multisyllabic.  Conversely, authors who are more disengaged or heady about their subject will tend to pontificate.
+• Within high-sentiment articles, we'll see a trend toward happy articles being of shorter overall length (at the article/posting level), whereas unhappy articles will be of longer overall length.  Grumpy people rant more, happy people want to be out being happy, rather than writing about it.
+READERSHIP RESPONSE
+• Readership, measured by number (and maybe affective content) of comments posted to a blog or article, is affected by the sentiment rating of the initial posting.
+This is a more open-ended hypothesis - we're interested in whether happy or unhappy writing generates greater response/discussion potential among readers, and how they in turn are compelled to respond.  Does an angry blog entry elicit other angry responses in turn?  Or does it turn off a readership that otherwise might have been interested in participating?
+
+There are two main benefits we see here: one is a theoretical contribution, and the other more applied.
+First, establishing a relationship between writing length (both at word- and article-units) and written sentiment is a novel contribution (so far as we can tell) to the sentiment analysis literature.
+Second, determining whether there's an "affective sweet spot" in written articles that gets a readership discussion going may be useful for media outlets and news sources - better understanding how to craft the tone of a news piece in order to stimulate discussion and interest is valuable both from the standpoint of participatory journalism as well as for increasing consumer exposure.
+
+Must-Have Features
+Inputs:
+Feature extraction (bag of words-type vectorization) and sentiment ratings of online media (blogs and newspapers).
+
+Analysis:
+Correlation/regression models for predicting sentiment
+
+Outputs:
+Statistical method for predicting and locating sentiment in media.
+
+
+Optional Features
+Interactive online tool for displaying relationship between text features and sentiment.
+
+What Data?
+• We're starting out culling data from the New York Times API.
+• We've also been given access to MIT's Mediacloud API, although we're still waiting on full access.  Mediacloud has several years of archives from the top 25 newspapers in the world, along with the top 1000 popular and political blogs across the internet.
+
+Design Overview
+• We will use sentiment analysis, feature extraction, and bag of words analysis, based on what we learned from homework 3.
+• The machine learning algorithm we use will also be based off homework 3: the naive bayes classifier with an n-gram to account for obvious negations.
+• To examine the relationship between word length, sentiment, and reader response, we will use multivariate time-series regression models.
+
+Visualization and Presentation
+• Our initial visualization may just be something simple. We can show standard outputs of scatterplots.
+• If time permits, we may attempt a more complicated visualization, modeled off something like hedonometer.org.
+• We may also write a draft academic paper related to the sociology/social psychology literature if time permits.
+
+Schedule
+• 11/10-11/17: All explore the NYT’s API independently, attempting to measure the correlation between various inputs and outputs we’ve decided on. Also search for similar kinds of work already being done (e.g., computational story lab, hedonometer.org).
+• 11/17-11/24: Split up tasks for presenting this material. E.g., Some may find links to the social psychology and sociology literature to write a paper. Others may start playing around with D3 to create a web-based interactive tool. Get feedback from Professor or TA’s about our project.
+• 11/24-12/1: Find ways to complicate the model. For instance, incorporate network analysis of discourses between popular media, social media, and blogging sites across time. Incorporating social network analysis of writers. Get feedback from Professor or TA’s about our project.
+• 12/1-12/12: Continue to improve the model and visualization components, as well as prepare screencast for presentation. Organize how we want to do our presentation.
+
+Verification
+• We will have several methods for at least testing the validity of our input measures. For instance, we can use independent sources, such as mediacloud.org, to see the top 100 words in the NYT.
+• To ensure generalizability across keywords and keyword searches for articles, we can use the top 100 most common keywords and run the analysis, excluding repeated articles.
+• We will also use standard cross-validation techniques, including a training, test, and cross-validation set.
