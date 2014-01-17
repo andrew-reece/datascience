@@ -5,7 +5,6 @@
 These are a collection of Python scripts for different data science projects I've worked on.
 <br /><br />
 <b><u>Projects</u></b>
-<br />
 <ul>
 <li>
 	<a href="https://github.com/dharmahound/datascience/tree/master/barbaric-yelp">Barbaric Yelp</a>
