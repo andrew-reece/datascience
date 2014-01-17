@@ -3,7 +3,7 @@
 <b><u>Background</u></b>
 <br />
 These are a collection of Python scripts for different data science projects I've worked on.
-<br />
+<br /><br />
 <b><u>Projects</u></b>
 <br />
 <ul>
