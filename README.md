@@ -29,6 +29,7 @@ These are a collection of Python scripts for different data science projects I'v
 <li>
 	<a href="https://github.com/dharmahound/datascience/tree/master/nyt-sentiment">NYT Sentiment</a>
 	- Machine learning/NLP for sentiment & popularity prediction in New York Times articles
+	<br />
 	- Also see <a href="http://nytprediction.weebly.com">project website</a>
 </li>
 
