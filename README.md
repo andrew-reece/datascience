@@ -1,6 +1,6 @@
 <h2>Data Science Projects</h2>
 
-<b><u>Background</u></b>
+<u><b>Background</b></u>
 <br />
 These are a collection of Python scripts for different data science projects I've worked on.
 <br /><br />
