@@ -1,8 +1,10 @@
-<h2>Data Science Projects</h2>
+<h2>Andrew Reece: Data Science</h2>
 
-<u><b>Background</b></u>
-<br />
-These are a collection of R, D3, and Python scripts for different data science projects I've worked on.
+These are repos for different data science projects I've worked on in professional and academic capacities. 
+In many cases, links to websites and screencasts are available from the landing pages of each repo.
+<br /><br />
+Also see <a href="andrewgarrettreece.com">my website</a> for a summary of my work, 
+along with links to my <a href="http://andrewgarrettreece.com/cv/Andrew-Reece_CV.pdf">CV</a> and <a href="datapsych.weebly.com">blog</a>.
 <br /><br />
 <b><u>Projects</u></b>
 <ul>
