@@ -1,0 +1,98 @@
+<span class="header"><a name="top">The Evolution of Social Networks</a></span>
+<br>
+<p>Our project uses the Social Evolution dataset from the <a href="http://realitycommons.media.mit.edu/SocialEvolutionData.html" target="_blank">Reality Commons project at MIT</a>.  The Reality Commons project used technology such as cell phones, Bluetooth devices, and WiFi access points to track the interactions of small communities of people.  The Social Evolution dataset involves a dormitory of about 80 participants.  Their locations, proximities, phone calls, and text messages were tracked, and they also completed surveys indicating their preferences regarding politics, music, eating habits, exercise habits, campus activities, and other topics.  The results of this research were published as:</p>
+
+<div class="reference"><a href="http://realitycommons.media.mit.edu/download.php?file=healthstatecomm.pdf" target="_blank">Sensing the 'Health State' of a Community</a>, A. Madan, M. Cebrian, S. Moturu, K. Farrahi, A. Pentland, Pervasive Computing, Vol. 11, No. 4, pp. 36-45 Oct 2012</div>
+
+<p>We created a set of interactive visualizations showing these interactions and preferences.  By exploring the data, you can how some of the connections  between pairs of participants may influence, or be influenced by, their personal preferences and habits.</p>
+
+
+    <ul></a>
+    <li><a href="#se_data">Social Evolution Data</a></li>
+    <li><a href="#viztypes">Visualization Types</a></li>
+    <ul>
+        <li><a href="#force">Force-Directed Graph</a></li>
+        <li><a href="#chord">Chord Diagram</a></li>
+        <li><a href="#heatmap">Heatmaps</a></li>
+        <li><a href="#network">Network Details</a></li>
+    </ul>
+    <li><a href="#cp">Control Panel</a></li>
+</ul>
+
+    <span class="header">
+     <a name="se_data">Social Evolution Data</a>
+    </span>
+
+<p>Participants in the Social Evolution project are represented by user IDs--numbers from 1 to 84.  They include freshmen, sophomores, juniors, seniors, and graduate students.</p>
+<p>Communication data is a compilation of phone calls and text messages between participants.</p>
+<p>Proximity data is captured from WiFi access points, indicating when participants were near each other in the dormitory.
+	<span class="btt"><a href="#" onclick="d3.select('#graph-reader').property('scrollTop',0);">back to top</a></span></p>
+<p></p>
+    <span  class="header">
+        <a name="viztypes">Visualization Types</a>
+    </span>
+    
+    <p>We have three major visualization types on the site, plus supplemental details.</p>
+    <span class="header2"><a name="force">Force-Directed Graph</a></span>
+<img class="small" src="images/force-example.png" />
+    <p>In this type of graph, objects are represented as nodes (typically circles) connected by edges (links), and simulated forces cause pairs of nodes to attract each other (so they maintain a reasonable closeness) while the general population of nodes repels each other so as to remain separate and distinct. </p>
+    <p>Our force-directed graph (visible on the "force" tab) shows either the communication or proximity relationships of Social Evolution participants (depending on the Data selection from the Control Panel in the upper right).  Pairs of participants are connected by links; the thickness of the links indicates the number of times the pair called each other (or were near each other) in the given time period.</p>
+    <img class="small" src="images/force-edge.png" />
+    <p>Hover over a node or a link to highlight it and display information in the Network Details box to the right, showing more details about the participant(s).  (See <a href="network">Network Details</a>)
+        <span class="btt"><a href="#" onclick="d3.select('#graph-reader').property('scrollTop',0);"> back to top</a></span>
+    </p>
+
+    <span class="header2"><a name="chord">Chord Diagram</a></span><p>
+        The chord diagram is another way of visualizing relationships. The objects (in our case, participants) are laid out along the circumference of a circle, with colored bands stretching across the circle to show relationships between objects.  This layout can make it easy to pick out a certain object for examination (objects can be ordered around the circle) and to see all the relationships for one object at once.
+    </p>
+    <img class="small" src="images/chord-example.png" />
+    <p>
+        In our chord diagram, participants are arranged in order of user ID around the circumference of the circle.  Color is used to differentiate the users in an ordinal fashion; when viewing a single chord relating two participants, the color of the chord matches that of the participant who initiated the most interaction.  Thus, if user 1 is red and user 61 is blue, and we are viewing communication data in which user 1 initiated most of the calls between them, the chord will be red.  The thickness of the chord reflects the number of interactions.  Hovering over a user will highlight that user's relationship, dimming all other chords.  Hovering over a chord reveals a tooltip displaying the number of calls initiated by each user in the pair.</p>
+    <img class="med" src="images/chord-tooltip-example.png" />
+        <p>Hovering over either will also display information in the Network Details box to the right, showing more details about the participant(s).  (See <a href="network">Network Details</a>)
+        <span class="btt"><a href="#" onclick="d3.select('#graph-reader').property('scrollTop',0);"> back to top</a></span>
+    </p>
+        <img class="small" src="images/net-details.png" />
+            
+            
+    <span class="header2"><a name="heatmap">Heatmaps</a></span><p>
+        Heatmaps are matrices in which a value is represented by color.
+    </p>
+    <img class="med" src="images/heatmap-example.png" />
+    <p>The heatmaps on our site each represent a descriptive attribute of the participants (such as political preference), with vales for that attribute (such as conservative or liberal) along the x- and y-axes.  The values are the number of interactions between pairs of participant, where one participant has the value on the x-axis and the other participant has the value on the y-axis.  We can use this to see the frequency of interactions between persons who are the same school year, different school years, same political preference, different political preference, etc.    
+    <span class="btt"><a href="#" onclick="d3.select('#graph-reader').property('scrollTop',0);">back to top</a></span></p>
+    
+    <span class="header2"><a name="network">Network Details</a></span><p>
+        The Network Details box appears to the right of the visualization display.  As noted in the descriptions of <a href="#force">Force Directed Graph</a> and <a href="#chord">Chord Diagram</a>, hovering over representations of participants or relationships will cause the Network Details box to display information about those participants.</p>
+    <img class="small" src="images/net-details2.png" />
+    <p>If one participant is displayed, it is listed under "Source Node".  If a relationship is highlighted, the two participants' data will appear under "Source Node" and "Target Node", indicating the directionality of the relationship.
+    </p>
+    <ul>
+        <li><span class="listdetails">User ID:</span> the numeric ID assigned by the Social Evolution project to maintain privacy.</li>
+        <li><span class="listdetails">Year:</span> the participant's year in school (freshman, sophomore, etc.).</li>
+        <li><span class="listdetails">Dorm Floor:</span> participants lived in nine dormitory sections. </li>
+        <li><span class="listdetails">Politics:</span> participants self-identified on a spectrum from conservative to liberal.  We gave these alphanumeric codes, such as LIB1, LIB2, where the higher number indicates stronger affiliation.</li>
+        <li><span class="listdetails">Fav Music:</span> participants ranked their favorite styles of music, via a survey.  The survey was taken multiple times over 18 months; we averaged their rankings and took their top choice after averaging. </li>
+        <li><span class="listdetails">Sad:</span> in a daily self-report on health symptoms, participants indicated whether they felt sad or not.  The frequency of an individual reporting sadness is scaled to show an overall level of sadness.   </li>
+        <li><span class="listdetails">Stressed:</span> in a daily self-report on health symptoms, participants indicated whether they felt stressed or not.  The frequency of an individual reporting stress is scaled to show the participant's overall level of stress. </li>
+        <li><span class="listdetails">Exercise:</span> in a monthly survey on health habits (eating and exercise), participants reported how many days per week they did at least 20 minutes of aerobic exercise.  The days-per-week of exercise are averaged over time to give the person an overall exercise ranking.</li>
+        <li><span class="listdetails">Friendship:</span> participants were surveyed 6 times at one-to-two month intervals.  For each other participant, they described a relationship such as close friend, someone they socialize with twice per week, political discussant, or someone with whom they share social media (or no answer at all).  In the Network Details box, this is shown on a sliding scale that moves from a person standing alone to two people linked by a heart.
+        <span class="btt"><a href="#" onclick="d3.select('#graph-reader').property('scrollTop',0);"> back to top</a></span></li>
+    </ul>
+        
+    
+    <span class="header"><a name="cp">Control Panel</a></span><p>
+        The Control Panel section to the right of the site allows you to explore the data by customizing the visualization.
+    </p>
+    <ul>
+        <li><span class="listdetails">Data:</span> allows you to switch between communication and proximity data.  While our primary focus is on communication data, as it reveals an intentional contact between two parties (while proximity may be accidental), the proximity data is also available for site users to explore.  The proximity data is much more dense, as participants' locations were collected every six minutes.</li>
+        <li><span class="listdetails">Filter:</span> opening the filter box brings up a selection of filter options.  These can be selected one at a time to filter out observations with the selected attribute.  Under Politics we offer two aggregate filters which filter all conservative or all liberal options respectively.</li>
+        <li><span class="listdetails">Heatmap:</span>allows the selection of one of six different heatmaps, which is displayed in the heatmap focus
+at the lower right of the visualization.  The choices are Music, Politics, School Year, Depressed, 
+Stressed and Exercise.</li> 
+        <li><span class="listdetails">Time Slider:</span>allows the user to select a point in time from the beginning of the study which is 2008-10-01
+through the end of the study which is July 2009, in two week increments.</li>
+        <li><span class="listdetails">Animation:</span> pressing start launches an animation of the data through the whole time series.</li>
+        <br><span class="btt"><a href="#" onclick="d3.select('#graph-reader').property('scrollTop',0);">back to top</a></span></br>
+<p></p>
+

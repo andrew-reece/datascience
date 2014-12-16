@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Evolution Beta</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+<div id="left">
+
+	<div id="intro">
+		<h2>The Evolution of Social Networks:</h2>
+		<h4>Visual reports from the MIT Social Evolution experiment</h4>
+			This display shows the evolution of communication networks over time. <br />
+			Edge weights represent call/sms activity between individuals. <br />
+			Frequency counts are updated in two-week intervals, for the ~18 month 
+			duration of the study.
+	</div>
+	<div id="tab-bar">
+		<div id="force-tab" class="tab selected">Force Layout</div>
+		<div id="chord-tab" class="tab">Chord Layout</div>
+		<div id="heatmap-tab" class="tab">Heatmaps</div>
+	</div>
+	<div id="graph"></div>
+</div>
+
+<div id="right">
+
+	<div id="controls">
+		<span class="subtitle" style="line-height:35px;">Control Panel</span>
+			<br />
+
+		Filter <div id="filter-clicker">...</div>
+		<div id="filter-box"></div>
+		Heatmap
+		<select id="heatmap-dropdown">
+			<option value="">Select heatmap</option>
+		</select>
+		<br />
+		Time Slider
+		<br />
+		Animation
+		<div id="start-button" onclick="elapse(elapse_seed);">Click to start</div>
+	</div>
+	
+	<div id="date">
+		<span class="subtitle" style="margin-right:15px;">Date</span>
+	</div>
+
+	<div id="details">
+		<span class="subtitle" style="margin-right:15px;">Network Details</span>
+	</div>	
+	
+	<div id="heatmap">
+		<span class="subtitle">Heatmap</span><br />
+		<span id="heatmap-description"></span>
+	</div>
+	
+</div>
+	<script src="main.js"> </script>
+</body>

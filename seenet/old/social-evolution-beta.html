@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Evolution Beta</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <style>
+    	body {
+    		font-family: helvetica, arial, sans serif;
+    		font-size: 12pt;
+    	}
+    	
+		.link {
+		  fill: none;
+		  stroke: #666;
+		  stroke-width: 1.5px;
+		}
+
+		#licensing {
+		  fill: green;
+		}
+
+		.link.licensing {
+		  stroke: green;
+		}
+
+		.link.resolved {
+		  stroke-dasharray: 0,2 1;
+		}
+
+		circle {
+		  fill: #ccc;
+		  stroke: #333;
+		  stroke-width: 1.5px;
+		}
+
+		text {
+		  font: 10px sans-serif;
+		  pointer-events: none;
+		  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+		}
+		
+		#graph {
+			position: absolute;
+			top:150px;
+			left:0px;
+			margin-top: 10px;
+		}
+    </style>
+</head>
+
+<body>
+	This graph combines the Locations.csv and Subjects.csv data from Social Evolution dataset. 
+	<br />
+	I used a subset of Locations (first 1000 rows) for this demo.
+	<br />
+	<b>Nodes</b> = individual subjects <br />
+	<b>Node colors</b> = residential floors <br />
+	<b>Edges</b> = connected bluetooth signals from subject phones at a given point in time (meaning they're nearby each other) <br />
+	<b>Edge weights</b> = probability of being on same floor
+	<div id="graph"></div>
+	<script src="se-beta.js"> </script>
+</body>

@@ -9,13 +9,18 @@ These are a collection of R, D3, and Python scripts for different data science p
 
 <li>
 	<a href="https://github.com/andrew-reece/datascience/tree/master/lead">Lead Poisoning Prevention</a>
-	- Developed a predictive model and interactive data interface for Chicago Department of Public Health, to aid in city-wide prevention of lead poisoning   <br />
+	Developed a predictive model and interactive data interface for Chicago Department of Public Health, to aid in city-wide prevention of lead poisoning   <br />
 	* only a D3 code snippet is available, due to privacy constraints
 </li>
 
 <li>
 	<a href="https://github.com/andrew-reece/datascience/tree/master/innovation-mining">Innovation Mining</a>
-	- Used NLP, LASSO regularization, and permutation modeling to algorithmically detect differences in innovative thinking
+	Used NLP, LASSO regularization, and permutation modeling to algorithmically detect differences in innovative thinking
+</li>
+
+<li>
+	<a href="https://github.com/andrew-reece/datascience/tree/master/seenet">SEE-Net</a>
+	Developed a network analysis web app (D3, Python) to model the evolution of social networks
 </li>
 
 <li>

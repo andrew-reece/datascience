@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SEE:NET - Social Evolution Experiment Network Exploration Tool</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+<div id="left">
+
+	<div id="intro">
+		<h2>The Evolution of Social Networks:</h2>
+		<h4>Visual reports from the MIT Social Evolution experiment</h4>
+			To get started, read the <a href="#" id="open-manual">User Manual</a> or watch the <a href="#" id="open-screencast">Screencast</a>.
+	</div>
+	<div id="tab-bar">
+		<div id="force-tab" class="tab selected">Force Layout</div>
+		<div id="chord-tab" class="tab">Chord Layout</div>
+		<div id="heatmap-tab" class="tab">Heatmaps</div>
+		<div id="manual-tab" class="tab about">User Manual</div>
+		<div id="screencast-tab" class="tab about">Screencast</div>
+		<div id="about-tab" class="tab about">About</div>
+	</div>
+	<div id="graph"></div>
+	<div id="graph-reader"></div>
+</div>
+
+<div id="right">
+
+	<div id="controls">
+		<span class="subtitle" style="line-height:35px;">Control Panel</span>
+		<br />
+		Data
+			<label class="data-choices">
+				<input type="radio" class="data-choice" name="datachoice" value="com" checked />Communication 
+				<input type="radio" class="data-choice" name="datachoice" value="prox" />Proximity <sup id="experimental">[Experimental!]</sup>
+			</label>
+		<br />
+
+		Filter <div id="filter-clicker" onclick="summonFilterBox()">...</div>
+		 <span style="margin-left:20px;font-size:10pt;">&lt; Click to open, then select categories to omit &gt;</span>
+		
+		<div id="filter-box">
+			<div id="fb-far-left">
+				<span class="fb-cat" id="fb-year_school">School Year</span><br />
+				<input type="checkbox" class="filter" name="year_school" value="FRESH" />Freshman<br />
+				<input type="checkbox" class="filter" name="year_school" value="SOPH" />Sophomore<br />
+				<input type="checkbox" class="filter" name="year_school" value="JUN" />Junior<br />
+				<input type="checkbox" class="filter" name="year_school" value="SEN" />Senior<br />
+				<input type="checkbox" class="filter" name="year_school" value="GRAD" />Grad student<br />
+				
+				<span class="fb-cat" id="fb-aerobic_per_week">Exercise</span><br />
+				<input type="checkbox" class="filter" name="aerobic_per_week" value="0" />No exercise<br />
+				<input type="checkbox" class="filter agg" name="aerobic_per_week" value="1.0-2.0" />Light exercise<br />
+				<input type="checkbox" class="filter agg" name="aerobic_per_week" value="3.0-4.0-5.0" />Avg exercise<br />
+				<input type="checkbox" class="filter agg" name="aerobic_per_week" value="6.0-7.0" />Crazy exercise
+				<br /><br />
+				<a href="#" id="filter-reset">Reset filters</a>
+			</div>
+			
+			<div id="fb-center-left">
+				<span class="fb-cat" id="fb-stressed">Stressed</span><br />
+					<input type="checkbox" class="filter" name="stressed" value="0" />No stress<br />
+					<input type="checkbox" class="filter agg" name="stressed" value="0.1-0.2-0.3" />Mild stress<br />
+					<input type="checkbox" class="filter agg" name="stressed" value="0.4-0.5-0.6-0.7" />Stressed<br />
+					<input type="checkbox" class="filter agg" name="stressed" value="0.8-0.9-1.0" />Stressball!!<br />
+				<br />
+				<span class="fb-cat" id="fb-sad">Sad</span><br />
+					<input type="checkbox" class="filter" name="sad" value="0" />Not sad<br />
+					<input type="checkbox" class="filter agg" name="sad" value="0.1-0.2-0.3" />Mildly sad<br />
+					<input type="checkbox" class="filter agg" name="sad" value="0.4-0.5-0.6-0.7" />Sad<br />
+					<input type="checkbox" class="filter agg" name="sad" value="0.8-0.9-1.0" />Super sad
+			</div>
+			
+			<div id="fb-center-right">
+				<span class="fb-cat" id="fb-libcon">Politics</span><br />
+				
+				<input type="checkbox" value="con-check" onclick="multiFilter(this.value)"/>Conservative<br />
+					<input class="filter sub-check con-check" type="checkbox" name="libcon" value="CON3" />Extreme<br />
+					<input class="filter sub-check con-check" type="checkbox" name="libcon" value="CON2" />Average<br />
+					<input class="filter sub-check con-check" type="checkbox" name="libcon" value="CON1" />Mild<br />
+					
+				<input type="checkbox" class="filter" name="libcon" value="NEUT" />Middling<br />
+				
+				<input type="checkbox" value="lib-check"  onclick="multiFilter(this.value)" />Liberal<br />
+					<input class="filter sub-check lib-check" name="libcon" type="checkbox" value="LIB1" />Mild<br />
+					<input class="filter sub-check lib-check" name="libcon" type="checkbox" value="LIB2" />Average<br />
+					<input class="filter sub-check lib-check" name="libcon" type="checkbox" value="LIB3" />Extreme<br />	
+			</div>
+			
+			<div id="fb-far-right">
+				<span class="fb-cat" id="fb-fav_music">Musical Taste</span><br />
+					<input type="checkbox" class="filter" name="fav_music" value="CLASS" />Classical<br />
+					<input type="checkbox" class="filter" name="fav_music" value="CLSRCK" />Classic Rock<br />
+					<input type="checkbox" class="filter" name="fav_music" value="CNFLK" />Country/Folk<br />
+					<input type="checkbox" class="filter" name="fav_music" value="HIPHOP" />Hip-hop<br />
+					<input type="checkbox" class="filter" name="fav_music" value="INDIE" />Indie Rock<br />
+					<input type="checkbox" class="filter" name="fav_music" value="JAZZ" />Jazz<br />
+					<input type="checkbox" class="filter" name="fav_music" value="METAL" />Metal<br />
+					<input type="checkbox" class="filter" name="fav_music" value="TOP40" />Pop/Top 40<br />
+					<input type="checkbox" class="filter" name="fav_music" value="SHOWTUN" />Showtunes<br />
+					<input type="checkbox" class="filter" name="fav_music" value="ELECTR" />Electronic<br />
+					<input type="checkbox" class="filter" name="fav_music" value="OTHER" />Other<br />
+			</div>
+		</div>
+		<br />
+		Heatmap
+		<select id="heatmap-dropdown"></select>
+		<br />
+		Time Slider <input id="date-filter" type="range" name="dateFilter" min="0" max="50" step="1" value="0">
+		
+		Animation
+		<div id="start-button">Click to start</div>
+	</div>
+	
+	<div id="date">
+		<span class="subtitle" style="margin-right:15px;">Date</span>
+	</div>
+	
+	<div id="details">
+		<span class="subtitle" style="margin-right:15px;">Network Details</span>
+		<div id="details-box">
+		
+			<table id='details-table'>
+				<tr class='head'>
+					<th> </th> <th>Source Node</th> <th>Target Node</th> 
+				</tr><tr> 
+					<td class='rowhead'>User ID</td> 	
+					<td class="network-detail" id='td-s-name'></td> <td class="network-detail" id='td-t-name'></td>  
+				</tr><tr class='zebra'> 
+					<td class='rowhead'>Year</td> 		
+					<td class="network-detail" id='td-s-year_school'></td> <td class="network-detail" id='td-t-year_school'></td>  
+				</tr><tr> 
+					<td class='rowhead'>Dorm Floor</td> 
+					<td class="network-detail" id='td-s-floor'></td> <td class="network-detail" id='td-t-floor'></td>  
+				</tr><tr class='zebra'> 
+					<td class='rowhead'>Politics</td> 	
+					<td class="network-detail" id='td-s-libcon'></td> <td class="network-detail" id='td-t-libcon'></td>  
+				</tr><tr> 
+					<td class='rowhead'>Fav Music</td> 	
+					<td class="network-detail" id='td-s-fav_music'></td> <td class="network-detail" id='td-t-fav_music'></td>  
+				</tr><tr class='zebra'> 
+					<td class='rowhead'>Sad</td> 		
+					<td class="network-detail" id='td-s-sad'></td> <td class="network-detail" id='td-t-sad'></td>  
+				</tr><tr> 
+					<td class='rowhead'>Stressed</td> 	
+					<td class="network-detail" id='td-s-stressed'></td> <td class="network-detail" id='td-t-stressed'></td>  
+				</tr><tr class='zebra'> 
+					<td class='rowhead'>Exercise</td> 	
+					<td class="network-detail" id='td-s-aerobic_per_week'></td> <td class="network-detail" id='td-t-aerobic_per_week'></td>
+				</tr><tr> 
+					<td class='rowhead'>Friendship</td> 	
+					<td colspan="2" id="relations-container">
+						<table id="relations-table">
+							<td class="network-detail relations-td" id='td-s-relations' width="84px">
+								<img id="nolove-left" src="images/nolove.png" />
+								<hr id="hr-left" />
+								<div class="relations-ball" id="ball-left">&bull;</div>
+							</td> 
+							<td class="relations-td" width="32px">
+								<img id="love" src="images/love.png" />
+							</td>
+							<td class="network-detail relations-td" id='td-t-relations' width="84px">
+								<hr id="hr-right" />
+								<div class="relations-ball" id="ball-right">&bull;</div>
+								<img id="nolove-right" src="images/nolove.png" />
+							</td>  
+						</table>
+					</td>
+				</tr>  
+			</table>
+		</div>
+	</div>	
+	
+	<div id="heatmap">
+		<span class="subtitle">Heatmap</span><br />
+		<div id="heatmap-description"></div>
+	</div>
+	
+	
+	<!-- for testing only - get rid of this when you figure out the heatmap tab -->
+	<div id="notice"></div>	
+
+</div>
+
+<script src="main.js"></script>
+
+</body>
