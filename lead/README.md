@@ -5,6 +5,6 @@ We developed a predictive model to proactively identify lead hazards in Chicago 
 <br /><br />
 Lightning talk: <a href="https://www.youtube.com/watch?v=DbplLXRQquI">https://www.youtube.com/watch?v=DbplLXRQquI</a>
 <br />
-Coding language: Javascript (mainly D3/JQuery)
-<br />
 <a href="http://github.com/andrew-reece/datascience/blob/master/lead/explore.js">Source code excerpt</a> 
+<br />
+Coding language: Javascript (mainly D3/JQuery)
